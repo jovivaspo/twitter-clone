@@ -37,8 +37,7 @@ const mapUserFromFirebase = (userFirebase) => {
 //Comprueba el usuario loggeado en firebase, donde onChanged es setUser para reactualizar el estado
 export const onAuthStateChanged = (onChanged) => {
     return auth.onAuthStateChanged(user =>{
-        console.log(user)
-        const normalizedUser = mapUserFromFirebase(user)
+        const normalizedUser = user? mapUserFromFirebase(user) : null
         onChanged(normalizedUser)
     })
 }

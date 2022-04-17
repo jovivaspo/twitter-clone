@@ -18,7 +18,8 @@ const Avatar = ({ user }) => {
         .avatar{
             width: 100px;
             height: 100px;
-            margin:10px
+            margin:10px;
+            border-radius:100%
            
         }
         `}

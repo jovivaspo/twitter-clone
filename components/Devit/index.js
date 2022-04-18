@@ -3,9 +3,9 @@ const Devit = ({ avatar, username, name, message, index }) => {
     return (
        <>
        <article key={index}>
-        <Avatar user={{avatar,username}} />
+        <Avatar avatar={avatar}/>
         <div>
-            <strong>{username}</strong>
+            <strong className='username'>{username}</strong>
             <p>{message}</p>
         </div>
        </article>
@@ -14,13 +14,19 @@ const Devit = ({ avatar, username, name, message, index }) => {
               article{
                 display: flex;
                 padding: 10px 15px;
+                border-bottom: 1px solid #eee
+              
             }
             div{
                 padding-right: 8px;
             }
             p{
                 margin:0;
-                line-height:1.3
+                line-height:1.3;
+                font-size:14px
+            }
+            .username{
+                font-size:15px
             }
            `}
        </style>

@@ -1,23 +1,22 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
-import Link from 'next/link'
 import {Button} from '../components/Button/index'
-import {loginWithGitHub, onAuthStateChanged} from '../firebase/client'
-import { useEffect, useState } from 'react'
-import {Avatar} from '../components/Avatar/index'
+import {loginWithGitHub} from '../firebase/client'
+import { useEffect} from 'react'
+import { useRouter } from 'next/router'
+import { useUser } from '../hooks/useUser'
 
 export default function Home() {
-  const [user,setUser] = useState(undefined)
+  const user = useUser()
+  const router = useRouter()
 
+  //Si hay usuario, redirección a home
   useEffect(()=>{
-    onAuthStateChanged(setUser)
-  },[])
+    user && router.replace('/home')
+  },[user])
 
   const handlerClick = () => {
     loginWithGitHub()
-    .then(user=>{
-      setUser(user)
-    })
     .catch(err=>{
       console.log(err)
     })
@@ -26,7 +25,8 @@ export default function Home() {
   console.log(user)
  
   return (
-    <div className={styles.container}>
+    <>
+        <div className={styles.container}>
       <Head>
         <title>Twitter clone</title>
         <link rel="icon" href="/favicon.ico" />
@@ -35,19 +35,28 @@ export default function Home() {
         <img src='/logo.png' alt='logo' className={styles.logo}/>
         <h1 className={styles.title}>Twitter Clone</h1>
         <h2 className={styles.subtitle}>Talk about development with developers</h2>
-        <nav className={styles.menu}>
-          <Link href="/timeline"><a className={styles.menuEnlaces} >Timeline</a></Link>
-        </nav>
         <div>
-          {user === null &&  <Button onClick={handlerClick}>Login with GitHub</Button> }
+          {user === null &&  <Button onClick={handlerClick}>
+          <img  className="logoGit" src='/github.png'/>
+            Login with GitHub</Button> }
           {
-            user && user.avatar && <Avatar user={user}/>
+            user === undefined && <span>Loading...</span>
           }
-         
-          
         </div>
       </main>
     </div>
+    <style jsx>
+      {`
+      .logoGit{
+                   
+        width:18px;
+        margin-right: 10px;
+        
+      }
+      `}
+    </style>
+    </>
+
 
   )
 }

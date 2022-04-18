@@ -1,8 +1,11 @@
 import { useState, useEffect } from 'react'
 import Devit from '../../components/Devit'
+import { useUser } from '../../hooks/useUser'
 const HomePage = () => {
     const [timelines, setTimelines] = useState([])
+    const user = useUser()
     const fetchTimelines = () => {
+        user &&
         fetch("http://localhost:3000/api/statuses/home_timeline")
             .then(res => res.json())
             .then(json => {
@@ -11,7 +14,7 @@ const HomePage = () => {
     }
     useEffect(() => {
         fetchTimelines()
-    }, [])
+    }, [user])
 
     return (
         <>
@@ -46,25 +49,27 @@ const HomePage = () => {
                     display:flex;
                     align-items:center;
 
-                    border-bottom:1px solid #ccc;
+                    border-bottom:1px solid #eee;
                     height:49px;
                     width:100%;
+                    background:#ffffffaa;
+                    backdrop-filter:blur(5px)
                 
                 }
 
                 h2{
                     font-size:20px;
                     font-weight:800;
+                    padding-left: 15px;
                 }
-                section{
-                    padding-top: 49px
-                }
+              
                 nav{
                     position:sticky;
                     bottom:0;
-                    border-top:1px solid #ccc;
+                    border-top:1px solid #eee;
                     height:49px;
-                    width:100%
+                    width:100%;
+                    background:#fff
                     
                 }
                 `}

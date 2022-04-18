@@ -1,9 +1,9 @@
 
-const Button = ({ children, onClick }) => {
+const Button = ({ children, onClick, disabled }) => {
     return (
         <>
-            <button onClick={onClick}>
-                <img  className="logoGit" src='/github.png'/>
+            <button onClick={onClick} disabled={disabled}>
+               
                 {children}
             </button>
             <style jsx>
@@ -24,12 +24,11 @@ const Button = ({ children, onClick }) => {
                 button:hover{
                     opacity:0.7
                 }
-                .logoGit{
-                   
-                    width:18px;
-                    margin-right: 10px;
-                    
+                button[disabled]{
+                    opacity:0.2;
+                    pointer-events:none
                 }
+               
                `}
             </style>
         </>

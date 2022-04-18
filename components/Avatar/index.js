@@ -1,24 +1,19 @@
 
-const Avatar = ({ user }) => {
+const Avatar = ({ avatar}) => {
     
    return <>
      <div className="container">
-        <img className="avatar" src={user.avatar} alt="avatar" />
-        <strong>{user.username}</strong>
+        <img className="avatar" src={avatar} alt="avatar" />
     </div>
     <style jsx>
         {`
         .container{
             display:flex;
-            flex-direction:column;
-            justify-content:center;
-            align-items:center;
-            margin:16px;
+            margin:8px;
         }
         .avatar{
-            width: 100px;
-            height: 100px;
-            margin:10px;
+            width: 48px;
+            height: 48px;
             border-radius:100%
            
         }

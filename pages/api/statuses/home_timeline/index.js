@@ -3,6 +3,20 @@ const timelines = [
         username: "Jorge Vivas",
         name:"Jorge Vivas Pocostales",
         avatar: "https://static2.elnortedecastilla.es/www/pre2017/multimedia/noticias/201501/12/media/cortadas/facebook-profile-picture-no-pic-avatar--575x323.jpg",
+        message: " Hola, estoy es una prueba. Y estoy aquí en casa de mi primito Luca, de chill comiendo un maguito"
+
+    },
+    {
+        username: "Jorge Vivas",
+        name:"Jorge Vivas Pocostales",
+        avatar: "https://static2.elnortedecastilla.es/www/pre2017/multimedia/noticias/201501/12/media/cortadas/facebook-profile-picture-no-pic-avatar--575x323.jpg",
+        message: " Hola, estoy es una prueba."
+
+    },
+    {
+        username: "Jorge Vivas",
+        name:"Jorge Vivas Pocostales",
+        avatar: "https://static2.elnortedecastilla.es/www/pre2017/multimedia/noticias/201501/12/media/cortadas/facebook-profile-picture-no-pic-avatar--575x323.jpg",
         message: " Hola, estoy es una prueba."
 
     },
@@ -19,7 +33,35 @@ const timelines = [
         avatar: "https://static2.elnortedecastilla.es/www/pre2017/multimedia/noticias/201501/12/media/cortadas/facebook-profile-picture-no-pic-avatar--575x323.jpg",
         message: " Hola, estoy es una prueba."
 
-    }
+    },
+    {
+        username: "Jorge Vivas",
+        name:"Jorge Vivas Pocostales",
+        avatar: "https://static2.elnortedecastilla.es/www/pre2017/multimedia/noticias/201501/12/media/cortadas/facebook-profile-picture-no-pic-avatar--575x323.jpg",
+        message: " Hola, estoy es una prueba."
+
+    },
+    {
+        username: "Jorge Vivas",
+        name:"Jorge Vivas Pocostales",
+        avatar: "https://static2.elnortedecastilla.es/www/pre2017/multimedia/noticias/201501/12/media/cortadas/facebook-profile-picture-no-pic-avatar--575x323.jpg",
+        message: " Hola, estoy es una prueba."
+
+    },
+    {
+        username: "Jorge Vivas",
+        name:"Jorge Vivas Pocostales",
+        avatar: "https://static2.elnortedecastilla.es/www/pre2017/multimedia/noticias/201501/12/media/cortadas/facebook-profile-picture-no-pic-avatar--575x323.jpg",
+        message: " Hola, estoy es una prueba."
+
+    },
+    {
+        username: "Jorge Vivas",
+        name:"Jorge Vivas Pocostales",
+        avatar: "https://static2.elnortedecastilla.es/www/pre2017/multimedia/noticias/201501/12/media/cortadas/facebook-profile-picture-no-pic-avatar--575x323.jpg",
+        message: " Hola, estoy es una prueba."
+
+    },
 ]
    
 

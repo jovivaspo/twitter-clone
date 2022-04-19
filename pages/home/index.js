@@ -1,16 +1,19 @@
 import { useState, useEffect } from 'react'
 import Devit from '../../components/Devit'
+import { fetchLastTweets } from '../../firebase/client'
 import { useUser } from '../../hooks/useUser'
 const HomePage = () => {
     const [timelines, setTimelines] = useState([])
     const user = useUser()
     const fetchTimelines = () => {
         user &&
-        fetch("http://localhost:3000/api/statuses/home_timeline")
+        /*fetch("http://localhost:3000/api/statuses/home_timeline")
             .then(res => res.json())
             .then(json => {
                 setTimelines(json.timelines)
-            })
+            })*/
+        fetchLastTweets()
+        .then(setTimelines)
     }
     useEffect(() => {
         fetchTimelines()
@@ -31,7 +34,7 @@ const HomePage = () => {
                                username={devit.username}
                                avatar={devit.avatar}
                                name={devit.name}
-                               message={devit.message}
+                               message={devit.content}
                                />)
                         })
                     }

@@ -1,16 +1,21 @@
 import { Avatar } from '../Avatar'
-const Devit = ({ avatar, username, name, message, index }) => {
+const Devit = ({ avatar, username, name, content, index, userId, createdAt }) => {
+
     return (
-       <>
-       <article key={index}>
-        <Avatar avatar={avatar}/>
-        <div>
-            <strong className='username'>{username}</strong>
-            <p>{message}</p>
-        </div>
-       </article>
-       <style jsx>
-           {`
+        <>
+            <article key={index}>
+                <Avatar avatar={avatar} />
+                <div>
+                    <section>
+                        <strong className='username'>{username}</strong>
+                        <span> . </span>
+                        <date>{createdAt}</date>
+                    </section>
+                    <p>{content}</p>
+                </div>
+            </article>
+            <style jsx>
+                {`
               article{
                 display: flex;
                 padding: 10px 15px;
@@ -20,17 +25,21 @@ const Devit = ({ avatar, username, name, message, index }) => {
             div{
                 padding-right: 8px;
             }
+            date{
+                font-size:11px;
+                color:#555;
+            }
             p{
                 margin:0;
                 line-height:1.3;
-                font-size:14px
+                font-size:11px
             }
             .username{
-                font-size:15px
+                font-size:12px
             }
            `}
-       </style>
-       </>
+            </style>
+        </>
     )
 }
 

@@ -34,7 +34,9 @@ const HomePage = () => {
                                username={devit.username}
                                avatar={devit.avatar}
                                name={devit.name}
-                               message={devit.content}
+                               content={devit.content}
+                               userId={devit.userId}
+                               createdAt={devit.createdAt}
                                />)
                         })
                     }

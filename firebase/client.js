@@ -87,9 +87,15 @@ export const fetchLastTweets = () => {
         return snapshot.docs.map(doc =>{
             const data = doc.data() //extraemos el contenido del documento
             const id = doc.id //extraemos el id del documento
+            const {createdAt} = data
+            const normalizedCreatedAt = new Date(createdAt.seconds*1000).toString()
+         
+           
             return {
                id,
-               ...data
+               ...data,
+               createdAt: normalizedCreatedAt
+
             }
         })
     })

@@ -1,7 +1,8 @@
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 import { initializeApp } from "firebase/app";
+import {ref, getStorage, uploadBytes, uploadBytesResumable} from "firebase/storage"
 import { getAuth, GithubAuthProvider, signInWithPopup } from "firebase/auth";
-import {getFirestore, Timestamp, collection, doc, setDoc, getDocs} from 'firebase/firestore'
+import {getFirestore, Timestamp, collection, doc, setDoc, getDocs, orderBy, query} from 'firebase/firestore'
 
 const firebaseConfig = {
     apiKey: "AIzaSyCuNAYT4JTxsW95K5ZxuSpjeqkyxgRErcg",
@@ -60,7 +61,7 @@ export const onAuthStateChanged = (onChanged) => {
   }
 
 
-export const addTweet = ({avatar, content, userId, username}) =>{
+export const addTweet = ({avatar, content, userId, username, img}) =>{
     //Referenciamos la colleción tweet
     const tweetRef = collection(db, "tweets")
     //Añadimos un documento a la colección tweet
@@ -68,6 +69,7 @@ export const addTweet = ({avatar, content, userId, username}) =>{
         avatar,
         content,
         userId,
+        img,
         username,
         createdAt: Timestamp.fromDate(new Date()),
         likesCount: 0,
@@ -79,24 +81,38 @@ export const addTweet = ({avatar, content, userId, username}) =>{
 
 export const fetchLastTweets = () => {
      //Referenciamos la colleción tweet
-     const tweetRef = collection(db, "tweets")
+     const tweetRef = collection(db,"tweets")
+     //Definimos la petición de los tweets ordenandolos
+     const q = query(tweetRef, orderBy("createdAt","desc")) 
      //Obtenemos todos los documentos de la colección
-    return getDocs(tweetRef)
+    return getDocs(q)
     .then(snapshot=>{
         //Devolvemos un array con cada documento en forma de objeto
         return snapshot.docs.map(doc =>{
             const data = doc.data() //extraemos el contenido del documento
             const id = doc.id //extraemos el id del documento
             const {createdAt} = data
-            const normalizedCreatedAt = new Date(createdAt.seconds*1000).toString()
-         
+           
            
             return {
                id,
                ...data,
-               createdAt: normalizedCreatedAt
+               createdAt: +createdAt.toDate()
 
             }
         })
     })
+}
+
+export const uploadImage = (file) => {
+    //Creamos el almacén
+    const storage = getStorage()
+    //Creamos una referencia
+    const imageRef = ref(storage,`images/${file.name}`)
+    //Enviamos la imagen
+    const uploadTask = uploadBytesResumable(imageRef, file)
+
+    return uploadTask
+
+    
 }

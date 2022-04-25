@@ -45,6 +45,8 @@ const HomePage = () => {
                                content={devit.content}
                                userId={devit.userId}
                                createdAt={devit.createdAt}
+                               img={devit.img}
+                               id={devit.id}
                                />)
                         })
                     }

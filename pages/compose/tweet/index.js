@@ -5,6 +5,7 @@ import { addTweet, uploadImage } from '../../../firebase/client'
 import { useRouter } from 'next/router'
 import Head from 'next/head'
 import { getDownloadURL } from 'firebase/storage'
+import { Avatar } from '../../../components/Avatar'
 
 
 const COMPOSE_STATES = {
@@ -109,25 +110,42 @@ export default function ComponeTweet() {
         <Head>
             <title>Crear un tweet</title>
         </Head>
-        <form onSubmit={handleSubmit}>
-            <textarea onChange={handleChange}
-                onDragEnter={handleDragEnter}
-                onDragLeave={handleDragLeave}
-                onDrop={handleDrop}
-                value={message}
-                placeholder="¿Qué está pasando?"></textarea>
-            {imageURL &&
-                <section>
-                    <img src={imageURL} />
-                    <button onClick={()=>setImageURL(null)}>X</button>
-                </section>}
-            <Button disabled={isButtonDisabled}>Twittear</Button>
-        </form>
+        <div className='form-container'>
+            {user && <div className="avatarContainer">
+                <Avatar avatar={user.avatar} />
+            </div>}
+            <form onSubmit={handleSubmit}>
+                <textarea onChange={handleChange}
+                    onDragEnter={handleDragEnter}
+                    onDragLeave={handleDragLeave}
+                    onDrop={handleDrop}
+                    value={message}
+                    placeholder="¿Qué está pasando?"></textarea>
+                {imageURL &&
+                    <section>
+                        <img src={imageURL} />
+                        <button onClick={() => setImageURL(null)}>X</button>
+                    </section>}
+                <Button disabled={isButtonDisabled}>Twittear</Button>
+            </form>
+
+        </div>
 
         <style jsx>
+
             {`
+            .form-container{
+                display:flex;
+
+                width:100%
+                
+            }
+            .avatarContainer{
+                padding:8px
+            }
             form{
                 padding:15px;
+                flex:1
             }
             textarea{
                 width:100%;

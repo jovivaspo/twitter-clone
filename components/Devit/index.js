@@ -1,18 +1,26 @@
 import useTimeAgo from '../../hooks/useTimeAgo'
 import { Avatar } from '../Avatar'
 import  Link  from 'next/link'
+import { useRouter } from 'next/router'
 const Devit = ({ avatar, username, name, content, index, userId, createdAt, img, id }) => {
     const timeAgo = useTimeAgo(createdAt)
+    const router = useRouter()
+
+    const handleClick = (e) =>{
+        e.preventDefault()
+        console.log(e.target)
+        router.push(`/status/${id}`)
+    }
 
     return (
         <>
-            <article key={index}>
+            <article key={index} onClick={handleClick}>
                 <Avatar avatar={avatar} />
                 <div>
                     <section>
                         <strong className='username'>{username}</strong>
                         <span> . </span>
-                        <Link href={`/status/${id}`}>
+                        <Link href='/status/[id]' as={`/status/${id}`}>
                             <time title={timeAgo}>{timeAgo}</time>
                         </Link>
 
@@ -26,7 +34,8 @@ const Devit = ({ avatar, username, name, content, index, userId, createdAt, img,
               article{
                 display: flex;
                 padding: 10px 15px;
-                border-bottom: 1px solid #eee
+                border-bottom: 1px solid #eee;
+                cursor:pointer
               
             }
             div{
@@ -35,6 +44,8 @@ const Devit = ({ avatar, username, name, content, index, userId, createdAt, img,
             time{
                 font-size:11px;
                 color:#555;
+                cursor:pointer;
+
             }
             p{
                 margin:0;
